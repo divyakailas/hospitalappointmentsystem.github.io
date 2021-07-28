@@ -1,0 +1,100 @@
+{% extends "layout.html" %}
+
+
+{% block body %}
+<div class="container my-5" >
+        <h2>Lifeline Hospital Appointment </h2>
+        <h5>{{message}}</h5>   <!-- To access Python variable in jinja code-->
+<form action="savepat" method="POST">
+            <div class="mb-3">
+              <label for="pid" class="form-label">patient Id</label>
+              <input type="number" class="form-control" id="pid" name='pid'>
+            </div>
+            <div class="mb-3">
+              <label for="pname" class="form-label">patient Name</label>
+              <input type="text" class="form-control" id="pname" name='pname'>
+            </div>
+            <div class="mb-3">
+              <label for="age" class="form-label">Age</label>
+              <input type="number" class="form-control" id="age" name='age'>
+            </div>
+
+            <div class="mb-3">
+                <label for="gender" class="form-label">Gender</label>
+                <select id="gender" class="form-select" name='gender'>
+                  <option selected>Select Gender</option>
+                  <option>Female</option>
+                  <option>Male</option>
+                  <option>other</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="phone" class="form-label">Mobile No</label>
+                <input type="number" class="form-control" id="phone" name='phone'>
+              </div>
+              <div class="mb-3">
+                <label for="apptime" class="form-label">Appointment Time</label>
+                <input type="text" class="form-control" id="apptime" name='apptime'>
+              </div>
+              
+              <div class="mb-3">
+                <label for="location" class="form-label">Location</label>
+                <input type="text" class="form-control" id="location" name='location'>
+              </div>
+              <div class="mb-3">
+                <label for="disease" class="form-label">Disease</label>
+                <input type="text" class="form-control" id="disease" name='disease'>
+              </div>
+              <div class="mb-3">
+                <label for="date" class="form-label">Appointment Date</label>
+                <input type="date" class="form-control" id="date" name='date'>
+              </div>
+            
+            <button type="submit" class="btn btn-primary">Add Appointment</button>
+          </form>
+      </div>
+
+         {% endblock %}
+         {%block contentB%}
+         <div class="container my-5">
+
+          <table class="table table-success table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Sr No</th>
+                <th scope="col">Patient Id</th>
+                <th scope="col">Patient Name</th>
+                <th scope="col">Patient Age</th>
+                <th scope="col">Patient Gender</th>
+                <th scope="col">Patient Phone</th>
+                <th scope="col">Appointment Time</th>
+                <th scope="col">Location</th>
+                <th scope="col">Disease</th>
+                <th scope="col">Appointment Date</th>
+                <th scope="col">Actions</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              {% for pat in patlist  %}
+              <tr>
+                <th scope="row">{{loop.index}}</th>
+                <td>{{pat.pid}} </td>
+                <td>{{pat.pname}}  </td>
+                <td> {{pat.age}}</td>
+                <td> {{pat.gender}}</td>
+                <td> {{pat.phone}}</td>
+                <td> {{pat.apptime}}</td>
+               <td> {{pat.location}}</td>
+                <td> {{pat.disease}}</td>
+                <td> {{pat.date}}</td>
+                <td>
+                  <a onclick="return confirm('Do you want delete')" href="deletepat/{{pat.pid}}" class="btn btn-danger" name="btnDelete">Delete</a><br><br>&nbsp;&nbsp;
+                  <a onclick="return confirm('Do you want Edit')"  href="editpat/{{pat.pid}}" class="btn btn-warning" name="btnEdit">Edit</a>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        {%endblock contentB%}

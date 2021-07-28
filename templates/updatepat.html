@@ -1,0 +1,61 @@
+
+{% extends "layout.html" %}
+{% block title %}Update Patient {% endblock %}
+
+{% block body %}
+
+<div class="container my-5" >
+    <h2>update patient Record </h2>
+    <h5>{{message}}</h5>   <!-- To access Python variable in jinja code-->
+<form action="/updatepat" method="POST">
+        <div class="mb-3">
+          <label for="pid" class="form-label">patient Id</label>
+          <input type="number" class="form-control" id="pid" name='pid' value="{{patient.pid}}" readonly>
+        </div>
+        <div class="mb-3">
+          <label for="pname" class="form-label">patient Name</label>
+          <input type="text" class="form-control" id="pname" name='pname' value="{{patient.pname}}">
+        </div>
+        <div class="mb-3">
+          <label for="age" class="form-label">Age</label>
+          <input type="number" class="form-control" id="age" name='age' value="{{patient.age}}">
+        </div>
+
+        <div class="mb-3">
+            <label for="gender" class="form-label">Gender</label>
+            <select id="gender" class="form-select" name='gender' value="{{patient.gender}}">
+              <option selected>Select Gender</option>
+              <option>Female</option>
+              <option>Male</option>
+              <option>other</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="phone" class="form-label">Mobile No</label>
+            <input type="number" class="form-control" id="phone" name='phone' value="{{patient.phone}}">
+          </div>
+          <div class="mb-3">
+            <label for="apptime" class="form-label">Appointment Time</label>
+            <input type="text" class="form-control" id="apptime" name='apptime' value="{{patient.apptime}}">
+          </div>
+          
+          <div class="mb-3">
+            <label for="location" class="form-label">Location</label>
+            <input type="text" class="form-control" id="location" name='location' value="{{patient.location}}">
+          </div>
+          <div class="mb-3">
+            <label for="disease" class="form-label">Disease</label>
+            <input type="text" class="form-control" id="disease" name='disease' value="{{patient.disease}}">
+          </div>
+          <div class="mb-3">
+            <label for="date" class="form-label">Appointment Date</label>
+            <input type="date" class="form-control" id="date" name='date' value="{{patient.date}}"> 
+          </div>
+        
+        <button type="submit" class="btn btn-primary">Update Appointment</button>
+      </form>
+  </div>
+
+
+
+{% endblock %}
